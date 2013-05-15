@@ -1,3 +1,10 @@
+<?php 
+require_once("php/function.php");
+//print_r(array_keys($_GET));
+$mesa_numero=array_keys($_GET)[0];
+print $mesa_numero;
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -29,7 +36,9 @@
 				<label>Cantidad</label><input type="text" name="cantidad-pedido"><button class="agregar-plato">Añadir a Pedido</button>
 			</div>
 			<hr>
+			<span class="titulo_mesa">Pedidos en la Mesa <?php print $mesa_numero; ?></span>
 			<div class="pedido-actual">
+				
 				<ul class="cabecera-pedidos">
 					<li>Numero</li>
 					<li>Codigo</li>

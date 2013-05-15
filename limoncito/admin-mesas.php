@@ -44,17 +44,6 @@ require_once("php/function.php");
 			$sql="select * from evento_mesa where estado=1";
 			$resultado=mysql_query($sql);
 			while ($filas=mysql_fetch_assoc($resultado)) { 
-				$descripcion=spliti("/",$filas["contenido"]);
-				print "----------------------";
-				print_r($descripcion);
-				/*
-				$producto=split("*",$descripcion[0][0]);
-				print_r($producto);
-				* mostrar detalle de la mesa... producto por producto con la cantidad señalada
-				*/
-				foreach (array_keys($descripcion) as $llave) {
-					$producto=spliti("*",$descripcion[$llave]);
-				}
 			?>
 			<div class="mesa">
 				<div class="activo">
@@ -62,9 +51,18 @@ require_once("php/function.php");
 				<span>Mesa <br><span class="mesa-numero"><?php print $filas["mesa"]; ?></span></span><br>
 				</div>
 				<ul>
-					<li>Ceviche Especial</li>
-					<li>Leche de Tigre</li>
-					<li><a href="detalle-mesa.php?<?php print $i;?>">Ver</a></li>
+			<?php
+				$descripcion=split("/",$filas["contenido"]);
+				for ($i=0; $i<count($descripcion); $i++) {
+					list($cantidad,$producto)=split('[*]',$descripcion[$i]);
+					$sql_aux="select * from producto where id='".$producto."'";
+					$resultado_aux=mysql_query($sql_aux);
+					while ($filas_aux=mysql_fetch_assoc($resultado_aux)) {
+						print "<li>".$cantidad."-".ucwords($filas_aux["nombre"])."</li>";
+					}
+				}
+			?>
+					<li><a href="detalle-mesa.php?<?php print $filas["id"];?>">Ver</a></li>
 				</ul>
 				<div class="blanco"><br></div>
 				</div>
