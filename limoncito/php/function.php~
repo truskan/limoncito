@@ -1,0 +1,70 @@
+<?php
+//Funciones en PHP
+session_start();
+require_once("config.php");
+$conexion=mysql_connect($servidor,$usuariodb,$clavedb) or die("No hay conexion");
+$selecciona_bd=mysql_select_db($bd) or die("No hay bd");
+
+function login($usuario,$clave) {
+	$sql="select * from empleado where usuario='".$usuario."' and clave='".$clave."'";
+	$resultado=mysql_query($sql);
+	while ($filas=mysql_fetch_assoc($resultado)) {
+		$_SESSION["empleado"]["id"]=$filas["id"];
+		$_SESSION["empleado"]["usuario"]=$filas["usuario"];
+		$_SESSION["empleado"]["clave"]=$filas["clave"];
+		$_SESSION["empleado"]["nombre"]=$filas["nombre"];
+		$_SESSION["empleado"]["apellido"]=$filas["apellido"];
+		$_SESSION["empleado"]["dni"]=$filas["dni"];
+		$_SESSION["empleado"]["email"]=$filas["email"];
+		$_SESSION["empleado"]["foto"]=$filas["foto"];
+	}
+	//if ($_SESSION)
+}
+
+//mysql_fetch_assoc solo es utilizado para mostrar datos, select
+function insertar($campos,$tabla){
+		$sql="INSERT INTO ".$tabla."(".join(", ",array_keys($campos)).") VALUES('".join("', '",$campos)."')";
+		$resultado=mysql_query($sql);
+		if ($resultado) {
+			$mensaje="Se ha realizado el evento";
+			setcookie("hecho",$mensaje,time()+$tiempo["mensaje"]);
+			$sw=true;
+		}
+		else {
+			$mensaje="Hubo un error en la insercion de Datos";
+			setcookie("error",$mensaje,time()+$tiempo["mensaje"]);
+			foreach(array_keys($campos) as $llave){
+				setcookie($llave,$campos[$llave],time()+$tiempo["error"]);
+			}
+			$sw=false;
+		}
+		return $sw;
+}
+
+// Funcion que solo se utiliza para los empleados, ya que son los unicos que se autentifican con el sistema
+
+function desactivar($campos){
+	
+}
+
+
+/*
+function insertar($campos,$tabla){
+	$sql="insert into ".$tabla."(";
+	foreach (llave as array_keys($campos){
+		
+	}
+	
+	
+}
+*/
+/*
+class Empleado{
+	var $tabla="empleado";
+	//campos usuario, clave, nombre, apellido, dni, email, foto ---> este debe ser un diccionario llave (nombre del campo) > valor
+	
+}
+*/
+
+
+?>
