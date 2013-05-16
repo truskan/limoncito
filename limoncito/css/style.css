@@ -2,6 +2,7 @@
 a {
 color: #fff;
 font-weight: bold;
+text-shadow: 1px 1px 1px #7FABD4;
 }
 body {
 	font-family: arial;
@@ -388,9 +389,26 @@ input[name="q"] {
 	width: 100px;
 }
 
+.cabecera-pedidos {
+	border:1px solid #4B6284;
+	text-align:center;
+	padding: 4px 0px;
+	background-color: #163641;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.platos-pedidos {
+	border:1px solid #4B6284;
+	text-align:center;
+	margin-top: -1px;
+	padding: 2px 0px;
+}
+
 
 .platos-pedidos .producto {
 	width: 100px;
+	text-align:justify;
 }
 
 .menu a {
@@ -434,13 +452,41 @@ input[name="q"] {
 	float:left;
 	margin-bottom: 20px;
 }
+
+.detalle-mesa-basico label {
+	width: 100px;
+	float:left;
+	font-weight: bold;
+}
+
+.detalle-mesa-basico input[type="text"] {
+	border:none;
+	border:1px solid #3B5F82;
+	border-radius: 3px;
+	padding: 2px 10px;
+	width: 200px;
+	
+}
+
 .detalle-mesa-fecha {
 	width: 110px;
 	float:left;
+	font-size: 12px;
+	text-align: center;
 }
 .detalle-pedido-admin {
 	float:left;
 	width: 360px;
+}
+
+.detalle-mesa-fecha .fecha {
+	text-align: center;
+	font-weight: bold;
+}
+.detalle-mesa-numero {
+	text-align: center;
+	font-size: 60px;
+	font-weight: bold;
 }
 
 /* Estilos para las tablas de Estado de Almacen
@@ -492,4 +538,10 @@ input[name="q"] {
 	height: 20px;
 }
 
+
+/* Estilos para pedidos actuales
+ * 
+ * 
+ */
+ 
 

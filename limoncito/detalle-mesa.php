@@ -3,6 +3,7 @@ require_once("php/function.php");
 //print_r(array_keys($_GET));
 $mesa_numero=array_keys($_GET);
 $mesa_numero=$mesa_numero[0]
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -13,6 +14,13 @@ $mesa_numero=$mesa_numero[0]
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 1.22" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css"/>	
+	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css"/>	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	
+	<script type='text/javascript' src='js/jquery.autocomplete.js'></script>
+	<script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+	<script type='text/javascript' src='js/jquery.autocomplete.pack.js'></script>
+	<script type="text/javascript" src="js/after_efects.js"></script>
 </head>
 
 <body>
@@ -74,6 +82,7 @@ $mesa_numero=$mesa_numero[0]
 				}
 				?>
 			</div>
+			<a class="agregar-plato" contador="<?php print $i+1;?>" href="#">+ platos</a>
 		</div>
 		<div class="detalle-mesa-cliente">
 			<?php
@@ -82,9 +91,9 @@ $mesa_numero=$mesa_numero[0]
 				while ($filas=mysql_fetch_assoc($resultado)) {
 			?>
 			<div class="detalle-mesa-basico">
-				<label>Cliente:</label>
+				<label>Cliente:</label><br>
 				<input type="text" name="cliente" value="<?php print ucwords($filas["nombre"]);?>"><br>
-				<label>Tipo de Venta</label>
+				<label>Tipo de Venta</label><br>
 				<?php 
 				if ($filas["tipo_documento"]==1) {
 				?>
@@ -94,13 +103,14 @@ $mesa_numero=$mesa_numero[0]
 				<span>Boleta</span><input type="radio" name="venta" value="boleta"><span>Factura</span><input type="radio" checked name="venta" value="factura"><br>
 				<?php }
 				?>
-				<label>Numero</label><span><?php $filas["numero_documento"];?></span><br>
-				<label>RUC</label><input type="text" value="<?php print $filas["ruc"];?>" name="ruc">
+				<label>Numero</label><span><?php print $filas["numero_documento"];?></span><br>
+				<label>RUC</label><br><input type="text" value="<?php print $filas["ruc"];?>" name="ruc">
 			</div>
 			<div class="detalle-mesa-fecha">
-				<label>Fecha </label><span><?php print date("d/m/Y",$filas["fecha"]); ?></span><br>
+				<label class="fecha">Fecha </label><br>
+				<span class="actual"><?php print date("d/m/Y",$filas["fecha"]); ?></span><br>
+				<span class="detalle-mesa-numero"><?php print $mesa_numero;?></span><br>
 				<label>Mesa</label><br>
-				<span class="detalle-mesa-numero">4</span><br>
 			</div>
 			<?php
 				}
@@ -109,7 +119,7 @@ $mesa_numero=$mesa_numero[0]
 				<ul class="cabecera-importe">
 					<li>Sub Total</li>
 					<li class="monto"><?php print $total; ?></li>
-					<li>I.G.V.</li>
+					<li>IGV (19%)</li>
 					<li class="monto"><?php print ($total*0.19);?></li>
 					<li>Neto</li>
 					<li class="monto"><?php print ($total+$total*0.19);?></li>
@@ -120,7 +130,7 @@ $mesa_numero=$mesa_numero[0]
 				<button class="terminar">Terminar</button>
 				<button class="guardar">Guardar</button>
 				<button class="imprimir">Imprimir</button>
-				<button class="cancelar">Imprimir</button>
+				<button class="cancelar">Cancelar</button>
 			</div>
 		</div>
 		</div>
