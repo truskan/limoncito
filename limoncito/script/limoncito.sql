@@ -219,13 +219,15 @@ DROP TABLE IF EXISTS `producto`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `producto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` tinytext NOT NULL,
+  `producto` tinytext,
   `precio_venta` float NOT NULL,
   `costo` float NOT NULL,
   `stock` int(11) NOT NULL,
   `categoria` varchar(1) CHARACTER SET utf8 NOT NULL,
+  `id_unidad` int(11) DEFAULT NULL,
+  `estado` varchar(1) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,8 +236,33 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (1,'Ceviche Simple',7.5,4.5,10,'1'),(2,'Ceviche Especial',10,7.5,5,'1'),(3,'Ceviche Simple',7.5,4.5,10,'1'),(4,'Ceviche Especial',10,7.5,5,'1'),(5,'Leche de Tigre',5.5,3.5,15,'1'),(6,'Parihuela',15.5,10.5,10,'1');
+INSERT INTO `producto` VALUES (1,'Ceviche Simple',7.5,4.5,10,'1',2,'1'),(2,'Ceviche Especial',10,7.5,5,'1',2,'1'),(3,'Ceviche Napolitano',7.5,4.5,10,'1',2,'1'),(4,'Leche de Pantera',10,7.5,5,'1',2,'1'),(5,'Leche de Tigre',5.5,3.5,15,'1',2,'0'),(6,'Parihuela',15.5,10.5,10,'1',2,'1'),(7,'Gaseosa Inca Kola 1.5',4.5,2,15,'0',2,'0'),(8,'Cerveza Pilsen',5,3.5,30,'0',1,'1'),(9,'Cerveza Cristal',4,2.5,35,'0',1,'1'),(10,'Cerveza Cuzquenia',6,4.5,42,'0',1,'1'),(11,'Gaseosa Coca Cola 2.5',6,3.5,22,'0',1,'1');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `unidad`
+--
+
+DROP TABLE IF EXISTS `unidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `unidad` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `prefijo` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `nombre` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `unidad`
+--
+
+LOCK TABLES `unidad` WRITE;
+/*!40000 ALTER TABLE `unidad` DISABLE KEYS */;
+INSERT INTO `unidad` VALUES (1,'Unid','Unidad'),(2,'Lt','Litro'),(3,'Kg','Kilogramo'),(4,'Porc','Porcentaje'),(5,'Caj','Cajas');
+/*!40000 ALTER TABLE `unidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -256,7 +283,7 @@ CREATE TABLE `venta` (
   `id_empleado` int(11) NOT NULL,
   `id_mesa` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,7 +292,7 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (2,1,'1','1234567890','1',67.5,1,1,4),(3,2,'1','1234567890','1',7.5,1,1,1);
+INSERT INTO `venta` VALUES (2,1,'1','1234567890','1',67.5,1,1,4),(3,2,'1','1234567890','1',7.5,1,1,1),(4,3,'0','1234567890','1',7.5,1,1,2);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -278,4 +305,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-15 19:29:40
+-- Dump completed on 2013-05-16 13:22:13
