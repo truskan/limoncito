@@ -52,7 +52,7 @@ require_once("php/function.php");
 					<li><?php print $filas["stock"];?></li>
 					<li><?php print $filas["prefijo"];?></li>
 					<li><?php print $estado[$filas["estado"]];?></li>
-					<li class="img-link"><a href="#" class="editar"><img src="img/editar.png"/><?php if ($filas["estado"]==0) {?><img src="img/eliminar.png"/><?php } ?></a></li>
+					<li class="img-link"><a href="#" class="editar"><img src="img/editar.png"/></a><a href="#"><?php if ($filas["estado"]==0) {?><img class="editar" src="img/eliminar.png"/><?php } ?></a></li>
 				</ul>
 				<?php
 				$contador+=1;
@@ -85,7 +85,7 @@ require_once("php/function.php");
 					<li><?php print $filas["stock"];?></li>
 					<li><?php print $filas["prefijo"];?></li>
 					<li><?php print $estado[$filas["estado"]];?></li>
-					<li class="img-link"><a href="#" class="editar"><img src="img/editar.png"/><?php if ($filas["estado"]==0) {?><img src="img/eliminar.png"/><?php } ?></a></li>
+					<li class="img-link"><a href="#" class="editar"><img src="img/editar.png"/></a><a href="#"><?php if ($filas["estado"]==0) {?><img class="editar" src="img/eliminar.png"/><?php } ?></a></li>
 				</ul>
 				<?php
 				$contador+=1;

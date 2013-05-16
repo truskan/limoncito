@@ -58,7 +58,7 @@ require_once("php/function.php");
 					$sql_aux="select * from producto where id='".$producto."'";
 					$resultado_aux=mysql_query($sql_aux);
 					while ($filas_aux=mysql_fetch_assoc($resultado_aux)) {
-						print "<li>".$cantidad."-".ucwords($filas_aux["nombre"])."</li>";
+						print "<li>".$cantidad."-".ucwords($filas_aux["producto"])."</li>";
 					}
 				}
 			?>

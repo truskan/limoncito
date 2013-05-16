@@ -2,7 +2,7 @@
 require_once("php/function.php");
 //print_r(array_keys($_GET));
 $mesa_numero=array_keys($_GET)[0];
-print $mesa_numero;
+//print $mesa_numero;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -62,7 +62,7 @@ print $mesa_numero;
 						while ($filas_aux=mysql_fetch_assoc($resultado_aux)) {
 							$total=$total+($cantidad*$filas_aux["precio_venta"]);
 							print "<li>".($i+1)."</li>";
-							print "<li class='producto'>".ucwords($filas_aux["nombre"])."</li>";
+							print "<li class='producto'>".ucwords($filas_aux["producto"])."</li>";
 							print "<li>".$filas_aux["precio_venta"]."</li>";
 							print "<li>".$cantidad."</li>";
 							print "<li>".($cantidad*$filas_aux["precio_venta"])."</li>";
