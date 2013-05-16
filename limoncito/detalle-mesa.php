@@ -38,57 +38,84 @@ print $mesa_numero;
 			<hr>
 			<span class="titulo_mesa">Pedidos en la Mesa <?php print $mesa_numero; ?></span>
 			<div class="pedido-actual">
-				
 				<ul class="cabecera-pedidos">
 					<li>Numero</li>
-					<li>Codigo</li>
-					<li>Producto</li>
+					<li class='producto'>Producto</li>
 					<li>Precio</li>
 					<li>Cantidad</li>
-					<li>importe</li>
+					<li>Importe</li>
 				</ul>
-				<ul class="platos-pedidos">
-					<li>2</li>
-					<li>005</li>
-					<li>Ceviche Mixto</li>
-					<li>20.00</li>
-					<li>2</li>
-					<li>40.00</li>
-				</ul>
-				<ul class="platos-pedidos">
-					<li>1</li>
-					<li>003</li>
-					<li>Ceviche Especial</li>
-					<li>25.00</li>
-					<li>2</li>
-					<li>50.00</li>
-				</ul>
+				<?php
+				$cantidad_platos=1;
+				$sql="select * from evento_mesa where id='".$mesa_numero."'";
+				$resultado=mysql_query($sql);
+				while ($filas=mysql_fetch_assoc($resultado)) { 
+					$descripcion=split("/",$filas["contenido"]);
+					$total=0;
+					for ($i=0; $i<count($descripcion); $i++) {
+					?>
+					<ul class="platos-pedidos">
+					<?php
+						list($cantidad,$producto)=split('[*]',$descripcion[$i]);
+						$sql_aux="select * from producto where id='".$producto."'";
+						$resultado_aux=mysql_query($sql_aux);
+						while ($filas_aux=mysql_fetch_assoc($resultado_aux)) {
+							$total=$total+($cantidad*$filas_aux["precio_venta"]);
+							print "<li>".($i+1)."</li>";
+							print "<li class='producto'>".ucwords($filas_aux["nombre"])."</li>";
+							print "<li>".$filas_aux["precio_venta"]."</li>";
+							print "<li>".$cantidad."</li>";
+							print "<li>".($cantidad*$filas_aux["precio_venta"])."</li>";
+						}
+					?>
+					</ul>
+					<?php
+					}	
+				}
+				?>
 			</div>
 		</div>
 		<div class="detalle-mesa-cliente">
+			<?php
+				$sql="select * from venta inner join cliente where venta.id_mesa='".$mesa_numero."'";
+				$resultado=mysql_query($sql);
+				while ($filas=mysql_fetch_assoc($resultado)) {
+			?>
 			<div class="detalle-mesa-basico">
 				<label>Cliente:</label>
-				<input type="text" name="cliente">
+				<input type="text" name="cliente" value="<?php print ucwords($filas["nombre"]);?>"><br>
 				<label>Tipo de Venta</label>
-				<span>Boleta</span><input type="radio" name="venta" value="boleta"><span>Factura</span><input type="radio" name="venta" value="factura"><br>
-				<label>Numero</label><span>00034-01</span><br>
-				<label>RUC</label><input type="text" name="ruc">
+				<?php 
+				if ($filas["tipo_documento"]==1) {
+				?>
+				<span>Boleta</span><input type="radio" checked name="venta" value="boleta"><span>Factura</span><input type="radio" name="venta" value="factura"><br>
+				<?php } 
+				else { ?>
+				<span>Boleta</span><input type="radio" name="venta" value="boleta"><span>Factura</span><input type="radio" checked name="venta" value="factura"><br>
+				<?php }
+				?>
+				<label>Numero</label><span><?php $filas["numero_documento"];?></span><br>
+				<label>RUC</label><input type="text" value="<?php print $filas["ruc"];?>" name="ruc">
 			</div>
 			<div class="detalle-mesa-fecha">
-				<label>Fecha </label><span>24/04/2013</span><br>
+				<label>Fecha </label><span><?php print date("d/m/Y",$filas["fecha"]); ?></span><br>
 				<label>Mesa</label><br>
 				<span class="detalle-mesa-numero">4</span><br>
 			</div>
+			<?php
+				}
+			?>
 			<div class="detalle-importe">
 				<ul class="cabecera-importe">
 					<li>Sub Total</li>
-					<li>90.00</li>
+					<li><?php print $total; ?></li>
 					<li>I.G.V.</li>
-					<li>00.00</li>
+					<li><?php print ($total*0.19);?></li>
 					<li>Neto</li>
-					<li>00.00</li>
+					<li><?php print ($total+$total*0.19);?></li>
 				</ul>
 			</div>
+			
 			<div class="detalle-pedido-admin">
 				<button class="terminar">Terminar</button>
 				<button class="guardar">Guardar</button>

@@ -375,6 +375,7 @@ input[name="q"] {
 .cabecera-pedidos{
 	width: 360px;
 	float:left;
+	font-weight: bold;
 }
 .platos-pedidos {
 	width: 360px;
@@ -383,6 +384,15 @@ input[name="q"] {
 
 .platos-pedidos li{
 	vertical-align: middle;
+}
+
+.cabecera-pedidos .producto {
+	width: 100px;
+}
+
+
+.platos-pedidos .producto {
+	width: 100px;
 }
 
 .menu a {
