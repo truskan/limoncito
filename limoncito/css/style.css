@@ -401,6 +401,48 @@ input[name="q"] {
 	color: #0D3536;
 }
 
+/* Estilos de Detalle de Mesa
+ * 
+ * 
+ */
+ 
+.detalle-importe {
+	width: 360px;
+	float:left;
+	margin-bottom: 10px;
+}
+.detalle-importe li {
+	float:left;
+	width: 58px;
+	font-size: 12px;
+	font-weight: bold;
+	border:1px solid #346DA5;
+	margin-left:-1px;
+	padding-left: 2px;
+	background-color: #A3C6E9;
+}
+.detalle-importe .monto {
+	text-align: center;
+	font-weight: normal;
+	width: 50px;
+	background-color: #FFFFFF;
+}
+
+.detalle-mesa-basico {
+	font-size: 12px;
+	width: 240px;
+	float:left;
+	margin-bottom: 20px;
+}
+.detalle-mesa-fecha {
+	width: 110px;
+	float:left;
+}
+.detalle-pedido-admin {
+	float:left;
+	width: 360px;
+}
+
 /* Estilos para las tablas de Estado de Almacen
  * 
  * 

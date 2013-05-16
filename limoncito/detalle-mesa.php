@@ -108,11 +108,11 @@ $mesa_numero=array_keys($_GET)[0];
 			<div class="detalle-importe">
 				<ul class="cabecera-importe">
 					<li>Sub Total</li>
-					<li><?php print $total; ?></li>
+					<li class="monto"><?php print $total; ?></li>
 					<li>I.G.V.</li>
-					<li><?php print ($total*0.19);?></li>
+					<li class="monto"><?php print ($total*0.19);?></li>
 					<li>Neto</li>
-					<li><?php print ($total+$total*0.19);?></li>
+					<li class="monto"><?php print ($total+$total*0.19);?></li>
 				</ul>
 			</div>
 			
