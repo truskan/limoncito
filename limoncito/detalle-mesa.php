@@ -1,9 +1,8 @@
 <?php 
 require_once("php/function.php");
 //print_r(array_keys($_GET));
-$mesa_numero=array_keys($_GET)[0];
-//print $mesa_numero;
-
+$mesa_numero=array_keys($_GET);
+$mesa_numero=$mesa_numero[0]
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -27,6 +26,7 @@ $mesa_numero=array_keys($_GET)[0];
 	</div>
 	<div class="contenedor">
 		<div class="cuerpo">
+			<?php print $mesa_numero[0];?>
 			<div class="detalle-mesa-plato">
 			<input type="text" name="q" class="buscador-plato" value="Busqueda de platos y otros"><br>
 			<div class="encontrado">
