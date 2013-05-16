@@ -10,6 +10,8 @@ require_once("php/function.php");
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 1.22" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css"/>	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/after_efects.js"></script>
 </head>
 
 <body>

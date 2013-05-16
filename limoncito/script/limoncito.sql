@@ -36,7 +36,7 @@ CREATE TABLE `cliente` (
   `nombre` tinytext NOT NULL,
   `direccion` tinytext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +45,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1,'11234567865','Zadith Alania','Jr. Piura N° 123');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +154,7 @@ CREATE TABLE `empleado` (
 
 LOCK TABLES `empleado` WRITE;
 /*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
-INSERT INTO `empleado` VALUES (1,'jorge','jorge','e10adc3949ba59abbe56e057f20f883e','','12345678');
+INSERT INTO `empleado` VALUES (1,'Naydu Leyva','naydu','e10adc3949ba59abbe56e057f20f883e','','12345678');
 /*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +180,7 @@ CREATE TABLE `evento_mesa` (
 
 LOCK TABLES `evento_mesa` WRITE;
 /*!40000 ALTER TABLE `evento_mesa` DISABLE KEYS */;
-INSERT INTO `evento_mesa` VALUES (1,1,'1*3','1'),(2,2,'1*3','1'),(3,3,'1*3/2*2/4*2','0'),(4,4,'3*1/2*3/2*2/4*2','1');
+INSERT INTO `evento_mesa` VALUES (1,1,'1*3','1'),(2,2,'1*3','1'),(3,3,'1*3/2*2/4*2','0'),(4,4,'3*1/2*3/3*2','1');
 /*!40000 ALTER TABLE `evento_mesa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,15 +248,15 @@ DROP TABLE IF EXISTS `venta`;
 CREATE TABLE `venta` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `numero_documento` int(11) NOT NULL,
-  `tipo_documento` int(11) NOT NULL,
+  `tipo_documento` varchar(1) CHARACTER SET utf8 DEFAULT NULL,
   `fecha` varchar(11) CHARACTER SET utf8 NOT NULL,
   `forma_pago` varchar(1) CHARACTER SET utf8 NOT NULL,
   `total_venta` float NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`id`) REFERENCES `cliente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_mesa` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,6 +265,7 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
+INSERT INTO `venta` VALUES (2,1,'1','1234567890','1',67.5,1,1,4),(3,2,'1','1234567890','1',7.5,1,1,1);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -276,4 +278,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-14 16:07:51
+-- Dump completed on 2013-05-15 19:29:40

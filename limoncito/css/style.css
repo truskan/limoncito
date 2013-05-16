@@ -28,17 +28,17 @@ body {
 }
 
 .error {
-	margin-top: -10px;
+	margin-top: -30px;
 	background-color: #de4343;
 	border-color: #c43d3d;
 }
 .success {
-	margin-top: -10px;
+	margin-top: -30px;
 	background-color: #61b832;
 	border-color: #55a12c;
 }
 .info {
-	margin-top: -10px;
+	margin-top: -30px;
 	background-color: #4ea5cd;
 	border-color: #3b8eb5;
 }
@@ -50,7 +50,6 @@ body {
 .info a:hover {
 	text-decoration: underline;
 }
-
 
 @keyframes animate-bg {
     from {
@@ -87,7 +86,6 @@ ul {
 	width: 100%;
 	padding-top: 60px;
 	_position:absolute;
-	
 	top:0;
 	left:0;
 	margin-left: -300;	
@@ -401,4 +399,57 @@ input[name="q"] {
 }
 .menu a:hover {
 	color: #0D3536;
+}
+
+/* Estilos para las tablas de Estado de Almacen
+ * 
+ * 
+ * 
+ */
+
+.estado-cabecera {
+	float:left;
+	width: 750px;
+	border: 1px solid #000;
+	font-size: 13px;
+	text-align:center;
+}
+.estado-item {
+	float:left;
+	width: 750px;
+	border: 1px solid #000;
+	margin-top: -1px;
+	font-size: 13px;
+	text-align:center;
+}
+.estado-cabecera li {
+	float:left;
+	width: 90px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+}
+.estado-item li {
+	float:left;
+	width: 90px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+}
+.estado-cabecera .producto , .estado-item .producto {
+	width: 300px;
+	text-align:justify;
+}
+
+.estado-cabecera .img-link, .estado-item .img-link {
+	width: -50px;
+	margin-right: -40px;
+}
+.img-link img {
+	width: 20px;
+	height: 20px;
+}
+
+#inactivo {
+	background-color: #FE5353;
 }

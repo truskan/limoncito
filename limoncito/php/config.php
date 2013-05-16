@@ -9,5 +9,6 @@ $bd="limoncito";
 $unidades=array("Kg","Lt","Unid","Porc");
 
 $mesas=15;
-
+$estado=array("Inactivo","Activo");
+$categoria=array("No perecible","Perecible");
 ?>
