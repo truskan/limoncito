@@ -20,6 +20,10 @@ $mesa_numero=$mesa_numero[0]
 	<script type='text/javascript' src='js/jquery.autocomplete.js'></script>
 	<script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
 	<script type='text/javascript' src='js/jquery.autocomplete.pack.js'></script>
+	<script type='text/javascript' src='js/jquery.ui.min.js'></script>
+	<script type='text/javascript' src='js/jquery.ui.core.js'></script>
+	<script type='text/javascript' src='js/jquery.ui.widget.js'></script>
+	<script type='text/javascript' src='js/jquery.ui.tabs.js'></script>	
 	<script type="text/javascript" src="js/after_efects.js"></script>
 </head>
 

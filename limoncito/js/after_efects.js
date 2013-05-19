@@ -28,33 +28,53 @@ $("document").ready(function() {
 	$(".agregar-plato").click(function() {
 		//var cont=($(".pedido-actual").attr("contador")).val();
 		var cont=$(".pedido-actual > .platos-pedidos").size();
-		$(".pedido-actual").append("<ul class='platos-pedidos'><li>"+(cont+1)+"</li><li><input type='text' name='nuevo_plato'/></li><li><div class='precio-plato'><br></div></li><li><input type='text' name='nuevo_plato_cantidad'/></li><li><br></li></ul>");
+		$(".pedido-actual").append("<ul class='platos-pedidos'><li>"+(cont+1)+"</li><li><input type='text' name='nuevo_plato'/></li><li class='precio_plato'>0</li><li><input type='text' name='nuevo_plato_cantidad'/></li><li><img src='img/add.png'/></li></ul>");
 		//alert(cont);
 		$(".platos-pedidos:even").css("background-color","#E5EDF0");
 		$(".platos-pedidos input[name='nuevo_plato']").css("width","100px");
 		$(".platos-pedidos input[name='nuevo_plato']").css("font-size","10px");
 		$(".platos-pedidos input[name='nuevo_plato_cantidad']").css("width","40px");
 		$(".platos-pedidos input[name='nuevo_plato_cantidad']").css("font-size","10px");
-	});
-	
-	$(".platos-pedidos input[name='nuevo_plato']").keyup(function() {
-		patron=$(".platos-pedidos input[name='nuevo_plato']").val();
-		
-		if (patron.length>=1){
+		$(".platos-pedidos .precio_plato").css("margin-left","40px");
+		var comida="";
+		$(".platos-pedidos input[name='nuevo_plato']").keyup(function() {
+			
+			patron=$(".platos-pedidos input[name='nuevo_plato']").val();
+			if (patron.length>=1){
+				$.ajax({
+					type: "POST",
+					url: "data_autocomplete.php",
+					data: "patron="+patron,
+					success: function(data) {
+						comida=data;
+				}
+			});
+				ubi=comida.split("/");
+				$(".platos-pedidos input[name='nuevo_plato']").autocomplete({
+					source: ubi
+				});
+			}
+		});	
+		var cantidad="";
+		$(".platos-pedidos input[name='nuevo_plato_cantidad']").focus(function() {
+
+			patron=$(".platos-pedidos input[name='nuevo_plato']").val();
 			$.ajax({
 				type: "POST",
-				url: "data_autocomplete.php",
+				url: "buscar_precio.php",
 				data: "patron="+patron,
 				success: function(data) {
-					comida=data;
+					cantidad=data;
 				}
-		});
-		ubi=comida.split("/");
-		//var datos="comida espejo cancion";
-		$(".platos-pedidos input[name='nuevo_plato']").autocomplete({
-			source: ubi
-		});
+			});
+			//alert(cantidad);
 			
-		}
-	});	
+			$(".precio_plato").html(cantidad);
+			
+		});
+		
+	});
+	
+	
 });
+
