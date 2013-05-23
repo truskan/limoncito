@@ -2,7 +2,8 @@
 require_once("php/function.php");
 //print_r(array_keys($_GET));
 $mesa_numero=array_keys($_GET);
-$mesa_numero=$mesa_numero[0]
+$mesa_numero=$mesa_numero[0];
+$_SESSION["mesa"]=$mesa_numero;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -74,7 +75,7 @@ $mesa_numero=$mesa_numero[0]
 						while ($filas_aux=mysql_fetch_assoc($resultado_aux)) {
 							$total=$total+($cantidad*$filas_aux["precio_venta"]);
 							print "<li>".($i+1)."</li>";
-							print "<li class='producto'>".ucwords($filas_aux["producto"])."</li>";
+							print "<li class='producto' >".ucwords($filas_aux["producto"])."</li>";
 							print "<li>".$filas_aux["precio_venta"]."</li>";
 							print "<li>".$cantidad."</li>";
 							print "<li>".($cantidad*$filas_aux["precio_venta"])."</li>";
@@ -85,6 +86,13 @@ $mesa_numero=$mesa_numero[0]
 					}	
 				}
 				?>
+				<ul class="platos-pedidos" id="nuevo-plato">
+					<li><?php print $i+1; ?></li>
+					<li class='producto'><input type='text' name='nuevo_plato'/></li>
+					<li><span class="precio-plato"></span><br></li>
+					<li><input type='text' name='nuevo_plato_cantidad'/></li>
+					<li><span class='importe'></span><a class="add-plato" href="#"><img src="img/add.png"/></a></li>
+				</ul>
 			</div>
 			<a class="agregar-plato" contador="<?php print $i+1;?>" href="#">+ platos</a>
 		</div>
@@ -108,7 +116,9 @@ $mesa_numero=$mesa_numero[0]
 				<?php }
 				?>
 				<label>Numero</label><span><?php print $filas["numero_documento"];?></span><br>
+				<div class="no-boleta">
 				<label>RUC</label><br><input type="text" value="<?php print $filas["ruc"];?>" name="ruc">
+				</div>
 			</div>
 			<div class="detalle-mesa-fecha">
 				<label class="fecha">Fecha </label><br>

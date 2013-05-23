@@ -541,3 +541,19 @@ input[name="q"] {
  */
  
 
+#nuevo-plato input[name="nuevo_plato"] {
+	width: 100px;
+	font-size: 10px;
+	margin-left: -2px;
+	padding-left: 2px;
+}
+#nuevo-plato input[name="nuevo_plato_cantidad"] {
+	width: 40px;
+	margin-left: 2px;
+	text-align: center;
+	font-size: 10px;
+}
+#nuevo-plato img {
+	width: 10px;	
+	float:right;
+}
