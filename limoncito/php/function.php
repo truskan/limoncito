@@ -16,6 +16,8 @@ function login($usuario,$clave) {
 		$_SESSION["empleado"]["nombre"]=$filas["nombre"];
 		$_SESSION["empleado"]["dni"]=$filas["dni"];
 		$_SESSION["empleado"]["email"]=$filas["email"];
+		$_SESSION["empleado"]["foto"]=$filas["foto"];
+		$_SESSION["user"]=$filas["id"];
 	}
 	return $sw=true;
 }

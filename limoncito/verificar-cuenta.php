@@ -3,9 +3,8 @@ require_once("php/function.php");
 if ($_POST["usuario"] and $_POST["clave"]) {
 	$sw=login($_POST["usuario"],md5($_POST["clave"]));
 	if($sw) {
-		$mensaje="Bienvenido a la Aplicacion de Limoncito... Verifique sus datos <a href='#'>Aqui</a>";
-		setcookie("success",$mensaje,time()+2);
-		header("location:admin.php");
+		setcookie("info","<strong>Bienvenido a Limoncito!</strong><br>Inicie configurando su informacion <a href='config_user.php?id=".$_SESSION["empleado"]["id"]."'>Config</a>",time()+1);
+		header("location:index.php");
 	}
 	print $_POST["usuario"]." -> ".$_POST["clave"];
 	print "--";
@@ -13,8 +12,7 @@ if ($_POST["usuario"] and $_POST["clave"]) {
 	
 }
 else {
-	$mensaje="Error al iniciar sesión - Usuario o Clave incorrecta!!!";
-	setcookie("error",$mensaje,time()+2);
+	etcookie("error","<strong>Ups, ocurrio un error!</strong><br>Usuario o Clave incorrecta!!!",time()+1);
 	header("location:index.php");
 }
 ?>

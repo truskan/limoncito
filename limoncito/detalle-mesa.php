@@ -15,9 +15,7 @@ $_SESSION["mesa"]=$mesa_numero;
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 1.22" />
 	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css"/>	
-	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css"/>	
 	<script type="text/javascript" src="js/jquery.js"></script>
-	
 	<script type='text/javascript' src='js/jquery.autocomplete.js'></script>
 	<script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
 	<script type='text/javascript' src='js/jquery.autocomplete.pack.js'></script>
@@ -148,6 +146,14 @@ $_SESSION["mesa"]=$mesa_numero;
 			</div>
 		</div>
 		</div>
+	</div>
+	</div>
+	<div class="pie">
+		<ul>
+			<li>FAQ</li>
+			<li>Contactanos y/o Ubicanos</li>
+			<li>Derechos Reservados del Autor</li>
+		</ul>
 	</div>
 </body>
 
