@@ -122,6 +122,7 @@ $("document").ready(function() {
 			}
 	});
 	
+		
 	$(".home").click(function() {
 		$("#nav li").css("background-color","#1E90FF");
 		$("#nav li").css("border","1px solid #1E90FF");
@@ -177,8 +178,29 @@ $("document").ready(function() {
 	});
 	
 	// Js for bubble actions
-		
-	$("#home").show("slow");	
+	$.ajax({
+		type: "POST",
+		url: "blog.php",
+		data: "default=1",
+		success: function(data) {
+			$("#bubble-content").html(data);
+		}
+	});
+	var extension=".php";
+	$(".bar-menu-js a").click(function() {
+		if ($(this).attr("page")) {
+			pagina=$(this).attr("page")+extension;
+			$.ajax({
+				type: "POST",
+				url: pagina,
+				data: "default=1",
+				success: function(data) {
+					$("#bubble-content").html(data);
+				}
+			});
+		}		
+	});
+	
 	
 	$(".bar-user").click(function() {
 		$(".bar-user").css({
@@ -508,30 +530,7 @@ $("document").ready(function() {
 	
 	$("#edit-button-submit").hide();
 	$("#edit-photo input[type='file']").hide();
-	
-	$("#done-edit").toggle(function() {
-		$(this).html("<img src='img/unlock.png'>");
-		$("#edit-inputs input, #edit-inputs textarea").css({
-			"border":"1px solid #7E2115",
-			"background-color":"#FFFFFF",
-			"-webkit-border-radius":"5px",
-			"-moz-border-radius":"5px",
-			"border-radius":"5px"
-		});
-		$("#edit-button-submit").show("slow");
-		$("#edit-photo input[type='file']").show("slow");
-		$("#edit-photo").css("text-align","center");
-	}, function() {
-		$("#done-edit").html("<img src='img/lock.png'>");
-		$("#edit-inputs input, #edit-inputs textarea").css({	
-			"background-color":"transparent",
-			"border":"none"
-		});	
-		$("#edit-button-submit").hide("slow");
-		$("#edit-photo input[type='file']").hide("slow");
-	});
-	
-	
+
 	// js for config
 	
 	

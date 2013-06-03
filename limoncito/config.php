@@ -1,20 +1,9 @@
-<?php
-require_once("php/function.php");
-if ($_POST["usuario"] and $_POST["clave"]) {
-	$sw=login($_POST["usuario"],md5($_POST["clave"]));
-	if($sw) {
-		$mensaje="Bienvenido a la Aplicacion de Limoncito... Verifique sus datos <a href='#'>Aqui</a>";
-		setcookie("info",$mensaje,time()+2);
-		header("location:admin.php");
-	}
-	print $_POST["usuario"]." -> ".$_POST["clave"];
-	print "--";
-	print_r($_SESSION["empleado"]);
-	
-}
-else {
-	$mensaje="Error al iniciar sesión - Usuario o Clave incorrecta!!!";
-	setcookie("error",$mensaje,time()+2);
-	header("location:index.php");
-}
-?>
+<div id="config">
+	<span class="text-paragraph">Temas</span><br>
+	<ul class="theme-types">
+		<li title="sky" class="sky"><input type="radio" name="paragraph-type" value="sky"><span class="left"></span><span class="center"></span><span class="right"></span></li>
+		<li title="forrest" class="forrest"><input type="radio" name="paragraph-type" value="forrest"><span class="left"></span><span class="center"></span><span class="right"></span></li>
+		<li title="wind" class="wind"><input type="radio" name="paragraph-type" value="wind"><span class="left"></span><span class="center"></span><span class="right"></span></li>
+	</ul>
+	<input type="submit" class="button-done" value="Done!"/>
+</div>
