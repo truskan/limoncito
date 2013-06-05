@@ -2,8 +2,14 @@
 require_once("php/function.php");
 ?>
 <link rel="stylesheet" media="screen" href="css/style.css" type="text/css"/>
-<div id="mesas">
-						
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="js/fancy_atack.js"></script>
+<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+
+<div id="mesas">						
 <div class="titulo-div">
 	<span class="titulo-actividad">Administracion de Mesas</span><br>
 </div>
@@ -37,7 +43,7 @@ require_once("php/function.php");
 			if (count($descripcion)>1) {
 				print "s</li>";
 			}
-			print "<li><a class='fancy' href='#' cod='".$filas["id"]."'>Ver Detalle</a></li>";
+			print "<li><a class='fancy' href='detalle_mesa.php?".$filas["id"]."'>Ver Detalle</a></li>";
 		?>
 		</ul>
 		<div class="blanco"><br></div>

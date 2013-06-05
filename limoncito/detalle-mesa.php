@@ -148,7 +148,7 @@ $_SESSION["mesa"]=$mesa_numero;
 		</div>
 	</div>
 	</div>
-	<div class="pie">
+	<div class="pie" >
 		<ul>
 			<li>FAQ</li>
 			<li>Contactanos y/o Ubicanos</li>
