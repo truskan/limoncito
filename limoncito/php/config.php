@@ -2,7 +2,7 @@
 //Archivo de Configuracion de Variables, Constantes y otros usados}
 session_start();
 $usuariodb="root";
-$clavedb="cocolindo";
+$clavedb="toor";
 $servidor="localhost";
 $bd="limoncito";
 

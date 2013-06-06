@@ -58,13 +58,28 @@ $(document).ready(function() {
 		patron=cantidad+"*"+plato;
 		$.ajax({
 			type: "POST",
-			url: "agregar_plato.php",
+			url: "verificar_stock.php",
 			data: "patron="+patron,
 			success: function(data) {
-				valor=data;
-			}
+				sw=data;
+			} 
 		});
-		$(".fancy").reload();
+		sw=0;
+		if(sw=="1") {
+			$.ajax({
+				type: "POST",
+				url: "agregar_plato.php",
+				data: "patron="+patron,
+				success: function(data) {
+					valor=data;
+				}
+			});
+			$(".fancy").reload();
+		}
+		else {
+			alert("No hay stock para "+cantidad+" de "+plato);
+			$("input[name='nuevo_plato']").focus();	
+		}
 	});
 		
 		
