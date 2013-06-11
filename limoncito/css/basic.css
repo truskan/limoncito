@@ -193,3 +193,16 @@ a,p,ul {
 	font-size: 20px;
 	margin-top: -50px;
 }
+
+.add-table {
+	text-align: center;
+	margin-left: 10%;
+}
+
+.add-table img {
+	width: 80px;
+}
+
+.pedido_inicial a {
+	text-shadow: 1px 1px 1px #1E90FF;
+}

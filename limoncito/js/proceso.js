@@ -51,11 +51,14 @@ $(document).ready(function() {
 		importe=$(".precio-plato").text()*$(".platos-pedidos input[name='nuevo_plato_cantidad']").val();
 		$(".importe").text(importe);
 	});
-	valor="";
+	var valor="";
+	var sw="";
 	$(".add-plato").click(function(){
+		
 		plato=$(".platos-pedidos input[name='nuevo_plato']").val();
 		cantidad=$(".platos-pedidos input[name='nuevo_plato_cantidad']").val();
 		patron=cantidad+"*"+plato;
+		alert(patron);
 		$.ajax({
 			type: "POST",
 			url: "verificar_stock.php",
@@ -64,8 +67,12 @@ $(document).ready(function() {
 				sw=data;
 			} 
 		});
-		sw=0;
-		if(sw=="1") {
+		tp=sw.split("/");
+		if(tp[0]=="comida lista") {
+			alert("No hay stock para "+cantidad+" de "+plato);
+			$("input[name='nuevo_plato_cantidad']").focus();	
+		}
+		else {
 			$.ajax({
 				type: "POST",
 				url: "agregar_plato.php",
@@ -74,11 +81,11 @@ $(document).ready(function() {
 					valor=data;
 				}
 			});
-			$(".fancy").reload();
-		}
-		else {
-			alert("No hay stock para "+cantidad+" de "+plato);
-			$("input[name='nuevo_plato']").focus();	
+			$(".fancy").fancybox({
+				'width'		: '75%',
+				'height'	: '400px'
+			});
+			alert("listo");
 		}
 	});
 		

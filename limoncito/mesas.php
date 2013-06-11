@@ -50,6 +50,9 @@ require_once("php/function.php");
 		</div>
 	</div>
 	<?php } ?>
+	<div class="more-table">
+		<a href="nueva_mesa.php" class="add-table"><img src="img/add.png" alt="Nueva Mesa"/></a> 
+	</div>
 	</div>
 	</div>			
 </div>
