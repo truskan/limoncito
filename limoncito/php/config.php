@@ -11,4 +11,14 @@ $unidades=array("Kg","Lt","Unid","Porc");
 $mesas=15;
 $estado=array("Inactivo","Activo");
 $categoria=array("No perecible","Perecible");
+
+
+/*
+ * Los campos combinados son destinados para almacenar varios datos
+ * 
+ * Compra: cantidad*producto*precio/cantidad*producto*precio/... etc
+ * 
+ * 
+ */
+
 ?>

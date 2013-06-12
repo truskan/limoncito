@@ -78,8 +78,7 @@ require_once("php/function.php");
 					</ul>
 				<a href="#"><li class="bar-apps">Registros</li></a>
 					<ul id="bar-apps">
-						<a href="#" class="sale" page="sale"><li>Nueva Venta</li></a>
-						<a href="#" class="repo" page="repo"><li>Nueva Compra</li></a>
+						<a href="#" class="repo" page="compra"><li>Nueva Compra</li></a>
 						<a href="#" class="table" page="mesas"><li>Mesas</li></a>
 					</ul>
 			</ul>

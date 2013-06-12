@@ -14,7 +14,6 @@ require_once("php/function.php");
 			
 			var comida="";
 			$(".pedido_inicial input[name='producto']").keyup(function() {
-				alert("tum");
 				patron=$(".pedido_inicial input[name='producto']").val();
 				if (patron.length>=1){
 					$.ajax({
@@ -32,11 +31,47 @@ require_once("php/function.php");
 				}
 			});
 						
-			$(".registrar_mesa").click(function() {
-				alert("tic tic");
+			$(".mas_pedidos").click(function() {
+				$(".pedido_inicial").append("<input type='text' name='cantidad'/> | <input type='text' name='producto'/><br>");
 			});
+			var comida="";
+			$(".registrar_mesa").click(function() {
+				var cantidad_array=new Array();
+				$("input[name='cantidad']").each(function() {
+					cantidad_array.push($(this).val());
+				});
+				
+				var producto_array=new Array();
+				$("input[name='producto']").each(function() {
+					producto_array.push($(this).val());
+				});
+				var contenido=new Array();
+				$.each(cantidad_array, function(key, value) {
+					contenido.push(cantidad_array[key]+"*"+producto_array[key]);
+				});
+				alert(contenido.join(""));
+				platos=contenido.join("/");
+				cliente=$("input[name='cliente']").val();
+				mesa=$("select[name='mesa']").val();
+				patron=cliente+"-"+mesa+"-"+platos;
+				$.ajax({
+					type: "POST",
+					url: "registrar_mesa.php",
+					data: "patron="+patron,
+					success: function(data) {
+						comida=data;
+					}
+				});
+				alert(comida);
+			});
+			
 		});
 	</script>
+	<style>
+		input[name='cantidad'] {
+			width: 50px;	
+		}
+	</style>
 </head>
 
 <body>
@@ -60,9 +95,9 @@ require_once("php/function.php");
 	</select><br>
 	<label>Pedido Inicial</label><br>
 	<div class="pedido_inicial">
-		<input type="text" name="cantidad"/> | <input type="text" name="producto"/>
+		<input type="text" name="cantidad"/> | <input type="text" name="producto"/><br>
 	</div>
-	<a href="#" class="pedido_inicial">+ pedidos</a><br>
+	<a href="#" class="mas_pedidos">+ pedidos</a><br>
 	<button class="registrar_mesa">Listo</button>
 </body>
 
