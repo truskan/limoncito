@@ -58,6 +58,20 @@ require_once("php/function.php");
 			$(".cp_add_items input[name='nuevo_cantidad']").keyup(function() {
 				$(".cp_add_items .cp_item_importe").text($(".cp_add_items input[name='nuevo_costo']").val()*$(this).val());
 			});
+			$(".cp_add_items .cp_img_add").click(function() {
+				patron=$(".cp_add_items input[name='nuevo_cantidad']").val()+"*"+$(".cp_add_items input[name='nuevo_producto']").val()+"*"+$(".cp_add_items input[name='nuevo_precio']").val();
+				alert(patron);
+				$.ajax({
+					type: "POST",
+					url: "agregar-producto-compra.php",
+					data: "patron="+patron,
+					success: function(data) {
+						sw=data;
+					} 
+				});
+				//Cambiar los inputs por spans... xD
+				
+			});
 		});
 	</script>
 </head>
