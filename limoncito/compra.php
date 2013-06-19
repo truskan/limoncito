@@ -55,12 +55,23 @@ require_once("php/function.php");
 				$(".cp_table").append("<tr class='cp_add_items'><td><span class='id_cp'></span></td><td><span class='cp_item_numero'>"+cont+"</span></td><td><input type='text' name='nuevo_producto'/></td><td><input type='text' name='nuevo_costo'/></td><td><input type='text' name='nuevo_cantidad'/></td><td><span class='cp_item_importe'></span></th><td><img class='cp_img_add' src='img/add.png'></th></tr>");
 				$(".cp_add_items input[name='numero_producto']").focus();
 			});
+			$(".p_add_item").css("color","#F00");
+			$(".p_add_item").attr('disabled', true);
 			$(".cp_add_items input[name='nuevo_cantidad']").keyup(function() {
 				$(".cp_add_items .cp_item_importe").text($(".cp_add_items input[name='nuevo_costo']").val()*$(this).val());
+				if ($(".cp_item_importe").text()=="0") {
+					$(".p_add_item").css("color","#F00");
+					$(".p_add_item").attr('disabled', true);
+				} else {
+					$(".p_add_item").css("color","#FFF");
+					$(".p_add_item").removeClass('disabled');
+				}
 			});
 			$(".cp_add_items .cp_img_add").click(function() {
-				patron=$(".cp_add_items input[name='nuevo_cantidad']").val()+"*"+$(".cp_add_items input[name='nuevo_producto']").val()+"*"+$(".cp_add_items input[name='nuevo_precio']").val();
+				patron=$(".cp_add_items input[name='nuevo_cantidad']").val()+"*"+$(".cp_add_items input[name='nuevo_producto']").val()+"*"+$(".cp_add_items input[name='nuevo_costo']").val();
+				producto=$(".cp_add_items input[name='nuevo_producto']").val();
 				alert(patron);
+				/*
 				$.ajax({
 					type: "POST",
 					url: "agregar-producto-compra.php",
@@ -69,8 +80,9 @@ require_once("php/function.php");
 						sw=data;
 					} 
 				});
+				*/
 				//Cambiar los inputs por spans... xD
-				
+				alert($(".cp_item_numero").text());
 			});
 		});
 	</script>
