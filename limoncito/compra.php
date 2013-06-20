@@ -60,15 +60,17 @@ require_once("php/function.php");
 			$(".cp_add_items input[name='nuevo_cantidad']").keyup(function() {
 				$(".cp_add_items .cp_item_importe").text($(".cp_add_items input[name='nuevo_costo']").val()*$(this).val());
 				if ($(".cp_item_importe").text()=="0") {
-					$(".p_add_item").css("color","#F00");
-					$(".p_add_item").attr('disabled', true);
+					$(".p_add_item").hide();
 				} else {
-					$(".p_add_item").css("color","#FFF");
-					$(".p_add_item").removeClass('disabled');
+					$(".p_add_item").show();
 				}
 			});
+			var id="";
 			$(".cp_add_items .cp_img_add").click(function() {
 				patron=$(".cp_add_items input[name='nuevo_cantidad']").val()+"*"+$(".cp_add_items input[name='nuevo_producto']").val()+"*"+$(".cp_add_items input[name='nuevo_costo']").val();
+				cantidad=$(".cp_add_items input[name='nuevo_cantidad']").val();
+				producto=$(".cp_add_items input[name='nuevo_producto']").val();
+				costo=$(".cp_add_items input[name='nuevo_costo']").val();
 				producto=$(".cp_add_items input[name='nuevo_producto']").val();
 				alert(patron);
 				/*
@@ -77,12 +79,21 @@ require_once("php/function.php");
 					url: "agregar-producto-compra.php",
 					data: "patron="+patron,
 					success: function(data) {
-						sw=data;
+						id=data;
 					} 
 				});
 				*/
 				//Cambiar los inputs por spans... xD
 				alert($(".cp_item_numero").text());
+				identificador=$(".cp_item_numero").text();
+				//id=id_compra/id_detalle
+				if (id!="") {
+					$(".p_added").append("<tr class='"+id+"'><td><span class='id_cp'>"+id+"</span></td><td><span class='cp_item_numero'>"+cont+"</span></td><td>"+$("input [name='nuevo_producto']").val()+"</td><td>"+$("input [name='nuevo_costo']").val()+"</td><td>"+$("input [name='nuevo_cantidad']").val()+"</td><td>"+$("cp_item_importe").text()+"</td><td><img class='cp_img_add' src='img/add.png'></td></tr>");
+					
+				} else {
+					alert("Datos Incorrectos");
+					$(".cp_table").html("<tr class='cp_add_items'><td><span class='id_cp'></span></td><td><span class='cp_item_numero'>"+cont+"</span></td><td><input type='text' name='nuevo_producto' value='"+producto+"'/></td><td><input type='text' name='nuevo_costo' value='"+costo+"'/></td><td><input type='text' name='nuevo_cantidad' value='"+cantidad+"'/></td><td><span class='cp_item_importe'>"+(cantidad*costo)+"</span></th><td><img class='cp_img_add' src='img/add.png'></th></tr>");
+				}
 			});
 		});
 	</script>
@@ -153,6 +164,7 @@ require_once("php/function.php");
 					<th>Importe</th>
 					<th><br></th>
 				</tr>
+				<div class="p_added"></div>
 				<tr class='cp_add_items'>
 					<td><span class='id_cp'></span></td>
 					<td><span class='cp_item_numero'></span></td>
