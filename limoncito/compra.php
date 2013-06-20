@@ -55,8 +55,7 @@ require_once("php/function.php");
 				$(".cp_table").append("<tr class='cp_add_items'><td><span class='id_cp'></span></td><td><span class='cp_item_numero'>"+cont+"</span></td><td><input type='text' name='nuevo_producto'/></td><td><input type='text' name='nuevo_costo'/></td><td><input type='text' name='nuevo_cantidad'/></td><td><span class='cp_item_importe'></span></th><td><img class='cp_img_add' src='img/add.png'></th></tr>");
 				$(".cp_add_items input[name='numero_producto']").focus();
 			});
-			$(".p_add_item").css("color","#F00");
-			$(".p_add_item").attr('disabled', true);
+			$(".p_add_item").hide();
 			$(".cp_add_items input[name='nuevo_cantidad']").keyup(function() {
 				$(".cp_add_items .cp_item_importe").text($(".cp_add_items input[name='nuevo_costo']").val()*$(this).val());
 				if ($(".cp_item_importe").text()=="0") {
@@ -72,8 +71,18 @@ require_once("php/function.php");
 				producto=$(".cp_add_items input[name='nuevo_producto']").val();
 				costo=$(".cp_add_items input[name='nuevo_costo']").val();
 				producto=$(".cp_add_items input[name='nuevo_producto']").val();
+				proveedor=$("input[name='proveedor']").val();
+				identificador=$(".cp_item_numero").text();
+				ruc=$("input[name='ruc']").val();
+				total=$(".cp_item_importe").text();
+				if (identificador==1) {
+					cid=$("input[name='cid']").val();
+				}
+				alert(cid);
+				patron=identificador+"+"+proveedor+"+"+ruc+"+"+patron+"+"+total+"+"+cid;
+				alert(proveedor);
+				alert(ruc);
 				alert(patron);
-				/*
 				$.ajax({
 					type: "POST",
 					url: "agregar-producto-compra.php",
@@ -82,7 +91,7 @@ require_once("php/function.php");
 						id=data;
 					} 
 				});
-				*/
+				
 				//Cambiar los inputs por spans... xD
 				alert($(".cp_item_numero").text());
 				identificador=$(".cp_item_numero").text();
@@ -116,7 +125,7 @@ require_once("php/function.php");
 	<?php
 	$i=1;
 	while ($fila=mysql_fetch_assoc($resultado)) {
-		print "<tr title='Compra realizada el ".date('d/m/y',$fila["fecha"])."'>";
+		print "<tr title='Compra realizada el ".date('d/m/y',$fila["fecha_compra"])."'>";
 		print "<td class='c_numero'>".$i."</td>";
 		$compra_items=split('[/]',$fila["ingredientes"]);
 		print "<td>";
@@ -162,7 +171,7 @@ require_once("php/function.php");
 					<th>Costo</th>
 					<th>Cantidad</th>
 					<th>Importe</th>
-					<th><br></th>
+					<th><br><input type='hidden' name='cid' value='<?php print time(); ?>'</th>
 				</tr>
 				<div class="p_added"></div>
 				<tr class='cp_add_items'>

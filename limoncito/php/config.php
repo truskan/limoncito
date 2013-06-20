@@ -12,6 +12,7 @@ $mesas=15;
 $estado=array("Inactivo","Activo");
 $categoria=array("No perecible","Perecible");
 
+$tiempo_disponibilidad=3600*24*15; // 15 dias : para modificar los dias solo cambiar el ultimo factor
 
 /*
  * Los campos combinados son destinados para almacenar varios datos
