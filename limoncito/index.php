@@ -73,7 +73,6 @@ require_once("php/function.php");
 				<a href="#"><li class="bar-photos">Fotos</li></a>
 					<ul id="bar-photos">
 						<a href="#" class="explore" page="explore"><li>Explorar</li></a>
-						<a href="#" class="galery" page="galery"><li>Galeria</li></a>
 						<a href="#" class="views" page="views"><li>Vistas</li></a>
 					</ul>
 				<a href="#"><li class="bar-apps">Registros</li></a>
